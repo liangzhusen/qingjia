@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+    <!-- 列表视图 -->
+    <record model="ir.ui.view" id="view_qingjd_tree">
+      <field name="name">请假单</field>
+      <field name="model">qingjia.qingjd</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="请假单">
+  		    <field name="shenqr" select="1"/>
+          <field name="tians" />
+          <field name="kaisrq" select="1"/>
+          <field name="shiyou" />
+          <field name="state"  select="1"/>
+        </tree>
+      </field>
+    </record>
+    <!-- 表单视图 -->
+    <record model="ir.ui.view" id="view_qingjd_form">
+      <field name="name">请假单</field>
+      <field name="model">qingjia.qingjd</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="请假单">
+  		    <field name="shenqr" readonly="1"/>
+          <field name="active" />          
+          <field name="tians" />
+          <field name="kaisrq"/>
+          <field name="shiyou" />
+          <separator colspan="5" string="审批流程"/>
+          <group col="5" colspan="5">
+          <field name="state" readonly="1" />
+          <button string="送批" name="action_toprove" states="draft"/>
+          <button string="批准" name="action_prove" states="wait_prove"/>
+          <button string="拒绝" name="action_reject" states="wait_prove"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    
+		<!-- 菜单和Action -->
+    <record model="ir.ui.menu" id="menu_qingjia_main">
+        <field name="name">请假</field>
+    </record>
+	<menuitem  name="请假申请"  parent="menu_qingjia_main"
+        id="menu_qingjia_shenqing"/>
+    <menuitem  name="请假审批"  parent="menu_qingjia_main"
+        id="menu_qingjia_shenpi"/>
+
+    <record model="ir.actions.act_window" id="action_qingjia_myqingjd">
+        <field name="name">我的请假单</field>
+        <field name="res_model">qingjia.qingjd</field>
+        <field name="domain">[('shenqr.user_id','=',uid)]</field>
+    </record>
+    <menuitem  name="我的请假单"  parent="menu_qingjia_shenqing"
+        id="menu_qingjia_myqingjd"  action="action_qingjia_myqingjd"/>
+    <record model="ir.actions.act_window" id="action_qingjia_qingjdprove">
+        <field name="name">请假单审批</field>
+        <field name="res_model">qingjia.qingjd</field>
+        <field name="domain">[('state','=','wait_prove'),('shenqr.parent_id.user_id','=',uid)]</field>
+    </record>
+    <menuitem  name="请假单审批"  parent="menu_qingjia_shenpi"
+        id="menu_qingjia_qingjdprove"  action="action_qingjia_qingjdprove"/>
+    <record model="ir.actions.act_window" id="action_qingjia_allqingjd">
+        <field name="name">所有请假单</field>
+        <field name="res_model">qingjia.qingjd</field>
+        <field name="domain">[('state','!=','draft'),('shenqr.parent_id.user_id','=',uid)]</field>
+    </record>
+    <menuitem  name="所有请假单"  parent="menu_qingjia_shenpi"
+        id="menu_qingjia_allqingjd"  action="action_qingjia_allqingjd"/>
+  </data>
+</openerp>

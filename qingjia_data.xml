@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--	增加用户: 经理1		-->        
+    <record id="user_jingli01" model="res.users">
+    	<field name="login">jl01</field>
+    	<field name="password">123</field>
+    	<field name="name">经理1</field>
+    	<field name="groups_id" eval="[(6,0,[ref('base.group_user'),ref('group_depmanager')])]"/>
+      
+    </record>
+    <record id="emp_jingli01" model="hr.employee">
+      <field name="name">经理1</field>
+      <field name="user_id" ref="user_jingli01"/>
+    </record>
+    <!--	增加用户: 经理2		-->        
+    <record id="user_jingli02" model="res.users">
+    	<field name="login">jl02</field>
+    	<field name="password">123</field>
+    	<field name="name">经理2</field>
+    	<field name="groups_id" eval="[(6,0,[ref('base.group_user'),ref('group_depmanager')])]"/>
+     
+    </record>
+    <record id="emp_jingli02" model="hr.employee">
+      <field name="name">经理2</field>
+      <field name="user_id" ref="user_jingli02"/>
+    </record>
+    
+    <!--	增加用户: 员工1		-->        
+    <record id="user_yuangong01" model="res.users">
+    	<field name="login">yg01</field>
+    	<field name="password">123</field>
+    	<field name="name">员工1</field>
+    	<field name="groups_id" eval="[(6,0,[ref('base.group_user')])]"/>
+    </record>
+    <record id="emp_yuangong01" model="hr.employee">
+      <field name="name">员工1</field>
+      <field name="parent_id" ref="emp_jingli01" />
+      <field name="user_id" ref="user_yuangong01"/>
+    </record>
+    <!--	增加用户: 员工2		-->        
+    <record id="user_yuangong02" model="res.users">
+    	<field name="login">yg02</field>
+    	<field name="password">123</field>
+    	<field name="name">员工2</field>
+      <field name="parent_id" ref="emp_jingli02" />
+    	<field name="groups_id" eval="[(6,0,[ref('base.group_user')])]"/>
+    </record>
+    <record id="emp_yuangong02" model="hr.employee">
+      <field name="name">员工2</field>
+      <field name="parent_id" ref="emp_jingli02" />
+      <field name="user_id" ref="user_yuangong02"/>
+    </record>
+
+    
+    
+  </data>
+</openerp>

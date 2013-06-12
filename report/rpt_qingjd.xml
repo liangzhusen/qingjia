@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <report id="report_qingjia_rpt_qingjd" header="False"
+      auto="False" model="qingjia.qingjd" name="qingjia.rpt_qingjd" 
+      rml="qingjia/report/rpt_qingjd.rml" string="打印请假单"/>
+  </data>
+</openerp>

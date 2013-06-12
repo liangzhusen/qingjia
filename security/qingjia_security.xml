@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+  <data noupdate="0">
+    <!-- 增加部门经理组 -->
+    <record model="res.groups" id="group_depmanager">
+        <field name="name">qingjia / department manager</field>
+    </record>
+    
+    <!-- 菜单访问权限 -->
+    <record model='ir.ui.menu' id='menu_qingjia_qingjdprove'>
+        <field name="groups_id" eval="[(6,0,[ref('group_depmanager')])]"/>
+    </record>
+    <record model='ir.ui.menu' id='menu_qingjia_allqingjd'>
+        <field name="groups_id" eval="[(6,0,[ref('group_depmanager')])]"/>
+    </record>
+
+    
+
+  </data>
+</openerp>
+

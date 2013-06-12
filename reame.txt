@@ -1,9 +1,0 @@
-ĞŞ¸Ä²âÊÔ
-
-Ìí¼ÓÄÚÈİ
-
-<<<<<<< HEAD
-new branch2
-=======
-new branch
->>>>>>> new-branche1
